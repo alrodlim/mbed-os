@@ -803,6 +803,19 @@
         },
         "device_has": ["USTICKER", "LPTICKER", "RTC", "ANALOGIN", "I2C", "I2CSLAVE", "I2C_ASYNCH", "INTERRUPTIN", "PORTIN", "PORTINOUT", "PORTOUT", "PWMOUT", "SERIAL", "SLEEP", "SPI", "SPISLAVE", "SPI_ASYNCH", "STDIO_MESSAGES"]
     },
+    "MIMXRT1020_EVK": {
+        "supported_form_factors": ["ARDUINO"],
+        "core": "Cortex-M7FD",
+        "supported_toolchains": ["ARM", "GCC_ARM", "IAR"],
+        "extra_labels": ["NXP", "MCUXpresso_MCUS", "EVK", "MIMXRT1020", "IMX"],
+        "is_disk_virtual": true,
+        "macros": ["CPU_MIMXRT1021DAG5A", "FSL_RTOS_MBED", "XIP_BOOT_HEADER_ENABLE=1", "XIP_EXTERNAL_FLASH=1", "XIP_BOOT_HEADER_DCD_ENABLE=1", "SKIP_SYSCLK_INIT"],
+        "inherits": ["Target"],
+        "detect_code": ["0227"],
+        "device_has": ["SLEEP", "USTICKER", "LPTICKER", "ANALOGIN", "I2C", "I2CSLAVE", "ERROR_RED", "INTERRUPTIN", "PORTIN", "PORTINOUT", "PORTOUT", "PWMOUT", "SERIAL", "SPI", "SPISLAVE", "STDIO_MESSAGES"],
+        "release_versions": ["2", "5"],
+        "device_name": "MIMXRT1021"
+    },	
     "MIMXRT1050_EVK": {
         "supported_form_factors": ["ARDUINO"],
         "core": "Cortex-M7FD",

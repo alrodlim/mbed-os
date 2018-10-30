@@ -19,7 +19,11 @@
 #include "fsl_clock.h"
 
 /* Array of IOMUX base address. */
+#if defined(TARGET_MIMXRT1050_EVK)
 static uint32_t iomux_base_addrs[FSL_FEATURE_SOC_IGPIO_COUNT] = { 0x401F80BC, 0x401F813C, 0u, 0x401F8014, 0x400A8000 };
+#else
+static uint32_t iomux_base_addrs[FSL_FEATURE_SOC_IGPIO_COUNT] = { 0x401F80BC, 0u, 0x401F8014, 0x400A8000 };
+#endif
 
 /* Get the IOMUX register address from the GPIO3 pin number */
 static uint32_t get_iomux_reg_base(PinName pin)
@@ -27,6 +31,7 @@ static uint32_t get_iomux_reg_base(PinName pin)
     int32_t gpio_pin = pin & 0xFF;
     uint32_t retval = 0;
 
+#if defined(TARGET_MIMXRT1050_EVK)
     if ((gpio_pin >= 0) && (gpio_pin < 12)) {
         retval = 0x401F81D4 + (gpio_pin * 4);
     } else if ((gpio_pin >= 12) && (gpio_pin < 18)) {
@@ -34,6 +39,15 @@ static uint32_t get_iomux_reg_base(PinName pin)
     } else if ((gpio_pin >= 18) && (gpio_pin < 28)) {
         retval = 0x401F8094 + ((gpio_pin - 18) * 4);
     }
+#else
+    if ((gpio_pin >= 0) && (gpio_pin < 12)) {
+        retval = 0x401F8158 + (gpio_pin * 4);
+    } else if ((gpio_pin >= 12) && (gpio_pin < 19)) {
+        retval = 0x401F813C + ((gpio_pin - 12) * 4);
+    } else if ((gpio_pin >= 19) && (gpio_pin < 29)) {
+        retval = 0x401F8094 + ((gpio_pin - 18) * 4);
+    }
+#endif
 
     return retval;
 }
